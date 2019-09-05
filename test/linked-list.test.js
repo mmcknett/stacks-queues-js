@@ -107,17 +107,27 @@ describe('LinkedList', function() {
       expect(list.length()).to.equal(0);
     });
 
-    it('must be the correct value for a list with one element', function() {
+    it('must be the correct value for a list with 1 element', function() {
       const list = new LinkedList();
       list.append('a');
       expect(list.length()).to.equal(1);
     });
 
-    it('must be the correct value for a list with two elements', function() {
+    it('must be the correct value for a list with 2 elements', function() {
       const list = new LinkedList();
       list.append('a');
       list.append('b');
       expect(list.length()).to.equal(2);
+    });
+
+    it('must be the correct value for a list with 5 elements', function() {
+      const list = new LinkedList();
+      list.append('a');
+      list.append('b');
+      list.append('c');
+      list.append('d');
+      list.append('e');
+      expect(list.length()).to.equal(5);
     });
   });
 });
