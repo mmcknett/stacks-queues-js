@@ -61,6 +61,38 @@ describe('LinkedList', function() {
     });
   });
 
+  describe('remove_first', function() {
+    it('is a noop if the list is empty', function() {
+      const list = new LinkedList();
+
+      list.remove_first();
+
+      expect(list.isEmpty()).to.be.true;
+    });
+
+    it('Removes the only value in the list', function () {
+      const list = new LinkedList();
+      list.add_first('a');
+
+      list.remove_first('a');
+
+      expect(list.isEmpty()).to.be.true;
+    });
+
+    it('removes the first value in the list', function() {
+      const list = new InspectableList();
+      list.add_last('a');
+      list.add_last('b');
+      list.add_last('c');
+
+      list.remove_first();
+
+      expect(list.isEmpty()).to.be.false;
+      expect(list.nodes.value).to.equal('b');
+      expect(list.nodes.next.value).to.equal('c');
+    });
+  })
+
   describe('delete', function() {
     it('is a noop if the list is empty', function() {
       const list = new LinkedList();
