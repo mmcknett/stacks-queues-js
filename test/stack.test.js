@@ -49,6 +49,17 @@ describe('Stack', function() {
       expect(expectA).to.equal('a');
       expect(expectB).to.equal('b');
       expect(expectC).to.equal('c');
+    });
+
+    it('prints as expected after pushing several objects.', function() {
+      const stack = new Stack();
+
+      stack.push('fleas');
+      stack.push('has');
+      stack.push('dog');
+      stack.push('my');
+
+      expect(stack.toString()).to.equal('[my, dog, has, fleas]');
     })
   });
 });
