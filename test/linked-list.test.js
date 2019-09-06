@@ -234,4 +234,32 @@ describe('LinkedList', function() {
       expect(list.length()).to.equal(5);
     });
   });
+
+  describe('toString', function() {
+    it('must print "[]" if the list is empty', function () {
+      const list = new LinkedList();
+      const out = list.toString();
+      expect(out).to.equal('[]');
+    });
+
+    it('must print a single value if the list has a single value', function () {
+      const list = new LinkedList();
+      list.add_last('a');
+
+      const out = list.toString();
+
+      expect(out).to.equal('[a]');
+    });
+
+    it('must print all values, comma-separated, if the list has multiple values', function () {
+      const list = new LinkedList();
+      list.add_last('a');
+      list.add_last('b');
+      list.add_last('c');
+
+      const out = list.toString();
+
+      expect(out).to.equal('[a, b, c]');
+    });
+  });
 });
