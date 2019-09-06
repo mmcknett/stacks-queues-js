@@ -1,4 +1,4 @@
-const LinkedList = require('../lib/linked-list.js').default;
+const LinkedList = require('../lib/linked-list.js');
 const expect = require('chai').expect;
 
 class InspectableList extends LinkedList {
@@ -15,11 +15,11 @@ describe('LinkedList', function() {
     });
   });
 
-  describe('append', function() {
-    it('must append a node onto an empty list', function() {
+  describe('add_last', function() {
+    it('must add_last a node onto an empty list', function() {
       const list = new InspectableList();
 
-      list.append('something');
+      list.add_last('something');
 
       expect(list.isEmpty()).to.be.false;
       expect(list.nodes).not.to.be.null;
@@ -28,9 +28,9 @@ describe('LinkedList', function() {
 
     it('must have the right elements after appending a second element.', function() {
       const list = new InspectableList();
-      list.append('something');
+      list.add_last('something');
 
-      list.append('something else');
+      list.add_last('something else');
 
       expect(list.nodes).not.to.be.null;
       expect(list.nodes.value).to.equal('something');
@@ -38,11 +38,11 @@ describe('LinkedList', function() {
     });
   });
 
-  describe('push', function() {
+  describe('add_first', function() {
     it('must push a node onto an empty list', function() {
       const list = new InspectableList();
 
-      list.push('something');
+      list.add_first('something');
 
       expect(list.isEmpty()).to.be.false;
       expect(list.nodes).not.to.be.null;
@@ -51,13 +51,85 @@ describe('LinkedList', function() {
 
     it('must have the right elements after pushing a second element.', function() {
       const list = new InspectableList();
-      list.push('a');
+      list.add_first('a');
 
-      list.push('b');
+      list.add_first('b');
 
       expect(list.nodes).not.to.be.null;
       expect(list.nodes.value).to.equal('b');
       expect(list.nodes.next.value).to.equal('a');
+    });
+  });
+
+  describe('delete', function() {
+    it('is a noop if the list is empty', function() {
+      const list = new LinkedList();
+
+      list.delete('a');
+
+      expect(list.isEmpty()).to.be.true;
+    });
+
+    it('removes the only value in the list', function() {
+      const list = new LinkedList();
+      list.add_first('a');
+
+      list.delete('a');
+
+      expect(list.isEmpty()).to.be.true;
+    });
+
+    it('removes the middle value in the list', function() {
+      const list = new InspectableList();
+      list.add_last('a');
+      list.add_last('b');
+      list.add_last('c');
+
+      list.delete('b');
+
+      expect(list.isEmpty()).to.be.false;
+      expect(list.nodes.value).to.equal('a');
+      expect(list.nodes.next.value).to.equal('c');
+    });
+
+    it('removes the first value in the list', function() {
+      const list = new InspectableList();
+      list.add_last('a');
+      list.add_last('b');
+      list.add_last('c');
+
+      list.delete('a');
+
+      expect(list.isEmpty()).to.be.false;
+      expect(list.nodes.value).to.equal('b');
+      expect(list.nodes.next.value).to.equal('c');
+    });
+
+    it('removes the third value in the list', function() {
+      const list = new InspectableList();
+      list.add_last('a');
+      list.add_last('b');
+      list.add_last('c');
+
+      list.delete('c');
+
+      expect(list.isEmpty()).to.be.false;
+      expect(list.nodes.value).to.equal('a');
+      expect(list.nodes.next.value).to.equal('b');
+    });
+
+    it('removes nothing if the vlaue is not present in the list', function() {
+      const list = new InspectableList();
+      list.add_last('a');
+      list.add_last('b');
+      list.add_last('c');
+
+      list.delete('d');
+
+      expect(list.isEmpty()).to.be.false;
+      expect(list.nodes.value).to.equal('a');
+      expect(list.nodes.next.value).to.equal('b');
+      expect(list.nodes.next.next.value).to.equal('c');
     });
   });
 
@@ -69,14 +141,14 @@ describe('LinkedList', function() {
 
     it('must be the correct value for a list with one element', function() {
       const list = new LinkedList();
-      list.append('a');
+      list.add_last('a');
       expect(list.first()).to.equal('a');
     });
 
     it('must be the correct value for a list with two elements', function() {
       const list = new LinkedList();
-      list.append('a');
-      list.append('b');
+      list.add_last('a');
+      list.add_last('b');
       expect(list.first()).to.equal('a');
     });
   });
@@ -89,14 +161,14 @@ describe('LinkedList', function() {
 
     it('must be the correct value for a list with one element', function() {
       const list = new LinkedList();
-      list.append('a');
+      list.add_last('a');
       expect(list.last()).to.equal('a');
     });
 
     it('must be the correct value for a list with two elements', function() {
       const list = new LinkedList();
-      list.append('a');
-      list.append('b');
+      list.add_last('a');
+      list.add_last('b');
       expect(list.last()).to.equal('b');
     });
   });
@@ -109,24 +181,24 @@ describe('LinkedList', function() {
 
     it('must be the correct value for a list with 1 element', function() {
       const list = new LinkedList();
-      list.append('a');
+      list.add_last('a');
       expect(list.length()).to.equal(1);
     });
 
     it('must be the correct value for a list with 2 elements', function() {
       const list = new LinkedList();
-      list.append('a');
-      list.append('b');
+      list.add_last('a');
+      list.add_last('b');
       expect(list.length()).to.equal(2);
     });
 
     it('must be the correct value for a list with 5 elements', function() {
       const list = new LinkedList();
-      list.append('a');
-      list.append('b');
-      list.append('c');
-      list.append('d');
-      list.append('e');
+      list.add_last('a');
+      list.add_last('b');
+      list.add_last('c');
+      list.add_last('d');
+      list.add_last('e');
       expect(list.length()).to.equal(5);
     });
   });
