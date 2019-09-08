@@ -10,33 +10,33 @@ describe('Stack', function() {
   });
 
   describe('push & pop', function() {
-    it('is not empty after pushing an object.', function() {
+    it.skip('is not empty after pushing an object.', function() {
       const stack = new Stack();
       stack.push('a');
       expect(stack.isEmpty()).to.be.false;
     });
 
-    it('returns null when popping an empty stack', function () {
+    it.skip('returns null when popping an empty stack', function () {
       const stack = new Stack();
       const value = stack.pop();
       expect(value).to.be.null;
     })
 
-    it('returns the value pushed after popping.', function() {
+    it.skip('returns the value pushed after popping.', function() {
       const stack = new Stack();
       stack.push('a');
       const value = stack.pop();
       expect(value).to.equal('a');
     });
 
-    it('is empty after popping a single pushed object.', function() {
+    it.skip('is empty after popping a single pushed object.', function() {
       const stack = new Stack();
       stack.push('a');
       stack.pop();
       expect(stack.isEmpty()).to.be.true;
     });
 
-    it('returns expected values after popping several objects.', function() {
+    it.skip('returns expected values after popping several objects.', function() {
       const stack = new Stack();
 
       stack.push('a');
@@ -51,7 +51,7 @@ describe('Stack', function() {
       expect(expectC).to.equal('c');
     });
 
-    it('prints as expected after pushing several objects.', function() {
+    it.skip('prints as expected after pushing several objects.', function() {
       const stack = new Stack();
 
       stack.push('fleas');
