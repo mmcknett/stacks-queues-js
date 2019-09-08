@@ -73,7 +73,19 @@ describe("Test Queue Implementation", function() {
     expect(q.dequeue()).to.equal(null);
   });
 
-  it("can only add 5 elements when MAX_SIZE is 5", function() {
+  it("can add 5 elements when MAX_SIZE is 5", function() {
+    const q = new Queue();
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    q.enqueue(5);
+    expect(Queue.MAX_SIZE).to.equal(5);
+    expect(q.array).to.eql([1, 2, 3, 4, 5]); // eql does deep equality checking
+    expect(q.toString()).to.equal("[1, 2, 3, 4, 5]");
+  });
+
+  it("can only add 5 elements when MAX_SIZE is 5 and 6 elements are added", function() {
     const q = new Queue();
     q.enqueue(1);
     q.enqueue(2);
@@ -82,10 +94,24 @@ describe("Test Queue Implementation", function() {
     q.enqueue(5);
     q.enqueue(6);
     expect(Queue.MAX_SIZE).to.equal(5);
+    expect(q.array).to.eql([6, 2, 3, 4, 5]); // eql does deep equality checking
     expect(q.toString()).to.equal("[2, 3, 4, 5, 6]");
   });
 
-  it("can enqueue 4 elements, dequeue three, and enqueue 3 different elements.", function() {
+  it("can only add 5 elements when MAX_SIZE is 5 and 7 elements are added", function() {
+    const q = new Queue();
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    q.enqueue(5);
+    q.enqueue(6);
+    expect(Queue.MAX_SIZE).to.equal(5);
+    expect(q.array).to.eql([6, 7, 3, 4, 5]); // eql does deep equality checking
+    expect(q.toString()).to.equal("[3, 4, 5, 6, 7]");
+  });
+
+  it.skip("can enqueue 4 elements, dequeue three, and enqueue 3 different elements.", function() {
     const q = new Queue();
     q.enqueue(1);
     q.enqueue(2);
