@@ -15,7 +15,7 @@ describe("Test wave 3 problems", function() {
       expect(balanced('{}')).to.be.true;
     });
 
-    it.skip("returns true for open/close square braces", function() {
+    it("returns true for open/close square braces", function() {
       expect(balanced('[]')).to.be.true;
     });
 
