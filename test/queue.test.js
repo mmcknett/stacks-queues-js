@@ -81,7 +81,13 @@ describe("Test Queue Implementation", function() {
     q.enqueue(4);
     q.enqueue(5);
     expect(Queue.MAX_SIZE).to.equal(5);
-    expect(q.array).to.eql([1, 2, 3, 4, 5]); // eql does deep equality checking
+    // The deep equality checking assumes that your internal array variable is called `array`.
+    // If you called that variable something else, this woudl need to be updated. Normally,
+    // tightly coupling tests to implementation details is A Bad Thing (tm). In this
+    // case, though, the tests are specifically exercising behavior that results from the
+    // ring-buffer implementation detail. That might justify tight coupling to you. Or not.
+    // Remove these from the tests if not; feel free to adapt them to your implementaiton if so.
+    //expect(q.array).to.eql([1, 2, 3, 4, 5]); // eql does deep equality checking
     expect(q.toString()).to.equal("[1, 2, 3, 4, 5]");
   });
 
@@ -94,7 +100,7 @@ describe("Test Queue Implementation", function() {
     q.enqueue(5);
     q.enqueue(6);
     expect(Queue.MAX_SIZE).to.equal(5);
-    expect(q.array).to.eql([6, 2, 3, 4, 5]); // eql does deep equality checking
+    // expect(q.array).to.eql([6, 2, 3, 4, 5]); // eql does deep equality checking
     expect(q.toString()).to.equal("[2, 3, 4, 5, 6]");
   });
 
@@ -107,7 +113,7 @@ describe("Test Queue Implementation", function() {
     q.enqueue(5);
     q.enqueue(6);
     expect(Queue.MAX_SIZE).to.equal(5);
-    expect(q.array).to.eql([6, 7, 3, 4, 5]); // eql does deep equality checking
+    // expect(q.array).to.eql([6, 7, 3, 4, 5]); // eql does deep equality checking
     expect(q.toString()).to.equal("[3, 4, 5, 6, 7]");
   });
 
@@ -123,7 +129,7 @@ describe("Test Queue Implementation", function() {
     q.enqueue(5);
     q.enqueue(6);
     q.enqueue(7);
-    expect(q.array).to.eql([6, 7, 3, 4, 5]); // eql does deep equality checking
+    // expect(q.array).to.eql([6, 7, 3, 4, 5]); // eql does deep equality checking
     expect(q.toString()).to.equal("[4, 5, 6, 7]");
   });
 });
