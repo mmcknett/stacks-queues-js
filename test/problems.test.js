@@ -37,5 +37,15 @@ describe("Test wave 3 problems", function() {
       expect(balanced('([]]'), 'Case: \'([]]\'').to.be.false;
       expect(balanced('())'), 'Case: \'())\'').to.be.false;
     });
+
+    it("Handles sentences with balanced parens/braces", function() {
+      const input = 'A statement (with parentheses [and maybe brackets]) should work. {reference?}';
+      expect(balanced(input)).to.be.true;
+    });
+
+    it("Handles sentences with unbalanced parens/braces", function() {
+      const input = 'A statement (with unbalanced parentheses [and brackets)] should not work. {reference?}';
+      expect(balanced(input)).to.be.false;
+    });
   });
 });
