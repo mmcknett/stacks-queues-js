@@ -25,16 +25,17 @@ describe("Test wave 3 problems", function() {
       expect(balanced('][')).to.be.false;
     });
 
-    it.skip("Given balanced strings it should return true", function() {
+    it("Given balanced strings it should return true", function() {
       expect(balanced('(({}))')).to.be.true;
       expect(balanced('{[{}{}]}')).to.be.true;
       expect(balanced('{{}{}}')).to.be.true;
     });
 
-    it.skip("will return false for an unbalanced set of parens", function() {
-      expect(balanced('(()')).to.be.false;
-      expect(balanced('(()}')).to.be.false;
-      expect(balanced('([]]')).to.be.false;
+    it("will return false for an unbalanced set of parens", function() {
+      expect(balanced('(()'), 'Case: \'(()\'').to.be.false;
+      expect(balanced('(()}'), 'Case: \'(()}\'').to.be.false;
+      expect(balanced('([]]'), 'Case: \'([]]\'').to.be.false;
+      expect(balanced('())'), 'Case: \'())\'').to.be.false;
     });
   });
 });
