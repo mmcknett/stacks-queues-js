@@ -7,6 +7,14 @@ describe("Test wave 3 problems", function() {
       expect(balanced('')).to.be.true;
     });
 
+    it("returns true for open/close parentheses", function() {
+      expect(balanced('()')).to.be.true;
+    });
+
+    it("doesn't return true for closed then open parentheses", function() {
+      expect(balanced(')(')).to.be.false;
+    });
+
     it.skip("Given balanced strings it should return true", function() {
       expect(balanced('(({}))')).to.be.true;
     });
