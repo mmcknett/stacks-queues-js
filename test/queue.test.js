@@ -84,4 +84,20 @@ describe("Test Queue Implementation", function() {
     expect(Queue.MAX_SIZE).to.equal(5);
     expect(q.toString()).to.equal("[2, 3, 4, 5, 6]");
   });
+
+  it("can enqueue 4 elements, dequeue three, and enqueue 3 different elements.", function() {
+    const q = new Queue();
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    q.dequeue();
+    q.dequeue();
+    q.dequeue();
+    q.enqueue(5);
+    q.enqueue(6);
+    q.enqueue(7);
+    expect(q.array).to.eql([6, 7, 3, 4, 5]); // eql does deep equality checking
+    expect(q.toString()).to.equal("[4, 5, 6, 7]");
+  });
 });
